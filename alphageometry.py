@@ -378,6 +378,9 @@ def try_translate_constrained_to_construct(string: str, g: gh.Graph) -> str:
   Returns:
     str: whether this construction is valid. If not, starts with "ERROR:".
   """
+  if string == None or len(string) == 0:
+    return 'ERROR: must be non-empty'
+
   if string[-1] != ';':
     return 'ERROR: must end with ;'
 
