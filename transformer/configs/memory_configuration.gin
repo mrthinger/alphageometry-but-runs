@@ -1,0 +1,22 @@
+# Configure external memory.
+# This file should be included after base_htrans.gin.
+
+import  training_loop
+from transformer import memory_factory
+
+MEMORY_HEAD_DIM = %HEAD_DIM
+NUM_MEMORY_HEADS = %gin.REQUIRED
+
+memory_factory.memory_on_tpu_factory:
+  num_heads = %NUM_MEMORY_HEADS
+  key_size = %MEMORY_HEAD_DIM
+  value_size = %MEMORY_HEAD_DIM
+  database_size = 8192
+  dtype = %DTYPE  # defined in base_htrans.gin
+
+
+training_loop.Trainer:
+  log_every_steps = 100    # memory can slow down training, need responsive stats
+  checkpoint_every_steps = 1000
+  generate_every_steps = 0  # disable generate mode when using external memory.
+
