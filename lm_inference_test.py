@@ -22,7 +22,7 @@ from absl.testing import absltest
 import lm_inference as lm
 
 
-_DATA_PATH = flags.DEFINE_string('data_path', '', 'path to ckpt and vocab.')
+_DATA_PATH = flags.DEFINE_string('data_path', 'ag_ckpt_vocab', 'path to ckpt and vocab.')
 _MELIAD_PATH = flags.DEFINE_string(
     'meliad_path', '', 'path to meliad repository.'
 )  # pylint: disable=line-too-long
