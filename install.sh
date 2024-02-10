@@ -20,9 +20,10 @@ set -x
 python -m venv .venv
 source .venv/bin/activate
 
-pip install -r requirements.in
+pip install -r working_requirements.txt
 
-gdown --folder https://bit.ly/alphageometry
 DATA=ag_ckpt_vocab
-
-git clone https://github.com/google-research/meliad
+mkdir -p $DATA
+wget https://github.com/mrthinger/alphageometry-but-runs/releases/download/data-upload/checkpoint_10999999 -O $DATA/checkpoint_10999999
+wget https://github.com/mrthinger/alphageometry-but-runs/releases/download/data-upload/geometry.757.model -O $DATA/geometry.757.model
+wget https://github.com/mrthinger/alphageometry-but-runs/releases/download/data-upload/geometry.757.vocab -O $DATA/geometry.757.vocab
