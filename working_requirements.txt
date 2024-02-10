@@ -54,7 +54,7 @@ ml-collections==0.1.1
 ml-dtypes==0.3.2
 msgpack==1.0.7
 nltk==3.8.1
-numpy==1.26.4
+numpy==1.24.3
 oauthlib==3.2.2
 opt-einsum==3.3.0
 optax==0.1.7
