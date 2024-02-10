@@ -14,7 +14,20 @@
 # ==============================================================================
 
 # !/bin/bash
+set -e
+set -x
+
+python -m venv .venv
+source .venv/bin/activate
+
+pip install -r requirements.in
+
+gdown --folder https://bit.ly/alphageometry
 DATA=ag_ckpt_vocab
+
+MELIAD_PATH=meliad
+git clone https://github.com/google-research/meliad
+export PYTHONPATH=$PYTHONPATH:$MELIAD_PATH
 
 DDAR_ARGS=(
   --defs_file=$(pwd)/defs.txt \
@@ -33,7 +46,7 @@ SEARCH_ARGS=(
 LM_ARGS=(
   --ckpt_path=$DATA \
   --vocab_path=$DATA/geometry.757.model \
-  --gin_search_paths=transformer/configs \
+  --gin_search_paths=$MELIAD_PATH/transformer/configs \
   --gin_file=base_htrans.gin \
   --gin_file=size/medium_150M.gin \
   --gin_file=options/positions_t5.gin \
@@ -45,6 +58,8 @@ LM_ARGS=(
   --gin_param=TransformerTaskConfig.sequence_length=128 \
   --gin_param=Trainer.restore_state_variables=False
 );
+
+echo $PYTHONPATH
 
 python -m alphageometry \
 --alsologtostderr \
