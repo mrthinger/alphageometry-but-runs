@@ -743,8 +743,7 @@ class Trainer:
 
     scalar_params_dict = {}
     for (k, v) in params_dict.items():
-      # Convert from bfloat16, which crashes when serializing a NaN.
-      v = np.asarray(v, dtype=jnp.float32)
+      v = np.asarray(v, dtype=jnp.float32) # cast for increased numeric stability (prevent NaNs)
       scalar_params_dict[k + "_mean"] = np.mean(v)
       scalar_params_dict[k + "_stddev"] = np.std(v)
       # scalar_params_dict[k + "_min"] = np.min(v)
