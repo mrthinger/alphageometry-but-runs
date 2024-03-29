@@ -1,3 +1,9 @@
+# my modifications
+
+- use simplified, working `install.sh` to install
+- use simplified, working `run.sh` to run
+
+Check the git log for more details on what was updated.
 
 # Solving Olympiad Geometry without Human Demonstrations
 
