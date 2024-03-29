@@ -2,6 +2,7 @@
 
 - use simplified, working `install.sh` to install
 - use simplified, working `run.sh` to run
+- change the DTYPE in transformer/configs/base_htrans.gin and do a global text search for bfloat16 if you're not using hardware that supports it.
 
 Check the git log for more details on what was updated.
 
